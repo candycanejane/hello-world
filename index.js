@@ -1,13 +1,18 @@
-var express = require('express')
-var app = express()
+var cool = require('cool-ascii-faces');
+var express = require('express');
+var app = express();
 
-app.set('port', (process.env.PORT || 5000))
-app.use(express.static(__dirname + '/public'))
+app.set('port', (process.env.PORT || 5000));
+app.use(express.static(__dirname + '/public'));
+
+// view is directory for all template files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.send('Greetings from planet Earth!')
-})
+  response.send('Greetings from planet Earth!\n' + cool());
+});
 
 app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
-})
+  console.log("Node app is running at localhost:" + app.get('port'));
+});
